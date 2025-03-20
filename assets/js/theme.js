@@ -32,3 +32,15 @@ scrollbarThumb.addEventListener("mousedown", function (event) {
     document.removeEventListener("mouseup", onMouseUp);
   }
 });
+
+document.getElementById("viewMore")?.addEventListener("click", function () {
+  const hiddenProducts = document.querySelectorAll("#productGrid .grid-item.hidden");
+
+  if (hiddenProducts.length === 0) return;
+
+  hiddenProducts.forEach((product) => {
+    product.classList.replace("hidden", "flex");
+  });
+
+  this.classList.replace("block", "hidden");
+});
