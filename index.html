@@ -46,7 +46,7 @@
         </a>
       </div>
       <div class="flex flex-col gap-3 md:gap-12">
-        <div class="product-gird grid grid-cols-2 gap-2.5 -mx-9 md:-mx-32 md:flex md:flex-row md:gap-6 md:overflow-x-scroll">
+        <div id="productGrid" class="product-grid grid grid-cols-2 gap-2.5 -mx-9 md:-mx-32 md:flex md:flex-row md:gap-6 md:overflow-x-scroll">
           <div class="flex flex-col pb-2 md:pb-4 gap-3 md:gap-4 min-w-[355px] md:ml-32">
             <div class="relative overflow-hidden rounded-2xl">
               <div class="relative pb-[100%]">
@@ -628,15 +628,15 @@
             </div>
           </div>
         </div>
-        <div class="hidden md:block bg-[#DDD6D7] h-1 align-middle relative">
-          <div id="thumb" class="h-1 bg-[#231F20] rounded-full absolute"></div>
+        <div id="customScrollbar" class="hidden md:block bg-[#DDD6D7] h-1 align-middle relative">
+          <div id="customScrollbarThumb" class="h-1 hover:h-[6px] hover:cursor-grab w-[480px] bg-[#231F20] rounded-full absolute top-1/2 -translate-y-1/2"></div>
         </div>
       </div>
     </section>
   </main>
 
   <!-- theme.js -->
-  <script src="/assets/js/theme.js"></script>
+  <script src="assets/js/theme.js"></script>
 </body>
 
 </html>
