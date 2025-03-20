@@ -1,0 +1,92 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+
+<section class="featured-products flex flex-col gap-6 md:gap-9 py-9 px-6 md:pt-20 md:pb-25 md:px-32">
+  <div class="flex items-center justify-center md:justify-between">
+    {%- if section.settings.heading != blank -%}
+      <h2
+        class="font-(family-name:--font-serif) text-[28px]/[1.26] md:text-[40px]/[1.2] font-black tracking-[-0.28px] md:tracking-[0.4px] text-[#231F20]">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.collection.url }}"
+        class="hidden md:flex items-center gap-2 px-8 py-4 font-(family-name:--font-poppins) text-sm/[1.4] font-semibold tracking-[0.42px] text-[#5C553A]">
+        <span>{{ section.settings.button_text }}</span>
+        {% render 'icon-arrow' %}
+      </a>
+    {%- endif -%}
+  </div>
+  <div class="flex flex-col gap-3 md:gap-12">
+    <div id="productGrid"
+      class="product-grid grid grid-cols-2 gap-3 md:-mx-32 md:flex md:flex-row md:gap-6 md:overflow-x-scroll">
+      {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        {% render 'card-product',
+          card_product: product,
+          show_secondary_image: section.settings.show_secondary_image,
+          section_id: section.id
+        %}
+      {%- endfor -%}
+
+      <div id="customScrollbar" class="hidden md:block bg-[#DDD6D7] h-1 align-middle relative">
+        <div id="customScrollbarThumb"
+          class="h-1 hover:h-[6px] hover:cursor-grab w-[480px] bg-[#231F20] rounded-full absolute top-1/2 -translate-y-1/2">
+        </div>
+      </div>
+      <button id="viewMore"
+        class="block md:hidden font-(family-name:--font-poppins) rounded-full bg-[#1C1D1D] py-4 px-6 capitalize text-white w-full text-center font-semibold text-base/[1.4] tracking-[0.48px]">
+        {{ section.settings.show_more_button_text }}
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "heading",
+        "default": "Best Sellers"
+      },
+      {
+        "type": "text",
+        "label": "Button Text",
+        "id": "button_text",
+        "default": "Shop All Best Sellers"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 8,
+        "max": 25,
+        "step": 1,
+        "default": 10,
+        "label": "products to show"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": true,
+        "label": "Show secondary image"
+      },
+      {
+        "type": "text",
+        "label": "Show More Button Text",
+        "id": "show_more_button_text",
+        "default": "Show More"
+      }          
+    ],
+    "presets": [
+      {
+        "name": "Featured collection"
+      }
+    ]
+  }
+{% endschema %}

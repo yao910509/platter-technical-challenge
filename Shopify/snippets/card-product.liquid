@@ -1,0 +1,44 @@
+<div class="grid-item relative group flex flex-col pb-2 md:pb-4 gap-3 md:gap-4 md:min-w-[355px] md:ml-32">
+  <div class="relative overflow-hidden rounded-[10px] md:rounded-2xl">
+    <div class="relative pb-[100%]">
+      <img
+        class="group-hover:opacity-0 opacity-100 transition-opacity duration-500 ease-in-out absolute w-full h-full object-cover"
+        src="{{ card_product.featured_media | image_url: width: 355 }}" alt="{{ card_product.title | escape }}" />
+      {%- if card_product.media[1] != null and show_secondary_image -%}
+        <img
+          class="group-hover:opacity-100 opacity-0 transition-opacity duration-500 ease-in-out absolute w-full h-full object-cover"
+          src="{{ card_product.media[1] | image_url: width: 355 }}" alt="{{ card_product.title | escape }}" />
+      {%- endif -%}
+    </div>
+    {% if card_product.tags contains 'best-seller' %}
+      <div class="absolute top-1 left-1 md:top-2 md:left-2 rounded-full border py-1 px-2 bg-white border-black">
+        <p
+          class="font-(family-name:--font-bebas) text-[8px]/[1] md:text-[10px]/[1] uppercase tracking-[0.32px] md:tracking-[0.6px] font-normal text-black">
+          Best Sellers</p>
+      </div>
+    {% endif %}
+    {% if card_product.compare_at_price > card_product.price %}
+      <div
+        class="absolute right-1 top-1 md:top-2 md:right-[27px] rounded-full border py-1 px-2 bg-[#5C7962] border-black">
+        <p
+          class="font-(family-name:--font-bebas) text-[8px]/[1] md:text-[10px]/[1] uppercase tracking-[0.32px] md:tracking-[0.6px] font-normal text-[#FFFFFA]">
+          Save 15%</p>
+      </div>
+    {% endif %}
+  </div>
+  <div class="flex flex-column gap-2 md:gap-5">
+    <div class="px-2 md:px-3 flex flex-col gap-2">
+      <h3
+        class="font-(family-name:--font-bebas) text-base/[1] md:text-lg/[1] tracking-[0.48px] md:tracking-[0.54px] uppercase font-normal text-[#1C1D1D]">
+        {{ card_product.title | escape }}
+      </h3>
+      <div class="flex flex-row gap-1">
+        {{----Product review app code----}}
+      </div>
+      <p class="font-(family-name:--font-poppins) font-medium text-base text-[#1C1D1D]">
+        {{ card_product.price | money }}
+      </p>
+    </div>
+  </div>
+  <a href="{{ card_product.url }}" class="absolute w-full h-full"></a>
+</div>
